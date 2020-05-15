@@ -1,0 +1,299 @@
+///   Variables
+//////////////////////////////////////////////////////////
+$blue-dark: #0c2461;
+$green-dark: #079992;
+$gray-dark: #1e272a;
+$brick: #e15f41;
+$door: #882D17;
+$roof: #c23616;
+$bush: #05c46b;
+$sun: #e67e22;
+
+
+$sun-gradient: linear-gradient(#c0392b, darken($sun, 12%));
+$sky: linear-gradient($blue-dark, $green-dark);
+
+///   Mixins
+//////////////////////////////////////////////////////////
+@mixin width-height($width, $height) {
+	width: $width;
+	height: $height;
+}
+@mixin pseduo($width, $height) {
+	content: '';
+	position: absolute;
+	width: $width;
+	height: $height;
+}
+@mixin bushes {
+	border-radius: 60% 60% 0 0 / 100% 100% 0 0;
+	border-bottom: 2px solid darken($bush, 15%);
+	background: linear-gradient($bush, darken($bush, 10%));
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	
+}
+
+body {
+	background-color: darken($gray-dark, 7%);
+}
+
+@media only screen and (max-width: 768px) {
+	.container {
+		max-width: 650px;
+		max-height: 450px;
+	}
+}
+
+.container {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	@include width-height(750px, 650px);
+	border-radius: 25px;
+	background: $sky;
+	transform: translate(-50%, -50%);
+	&::after,
+	&::before {
+		@include pseduo(120px, 35px);
+		top: 0;
+		background-color: #cd6133;
+		opacity: .7;
+	}
+	&::after {	
+		right: -38px;		
+		transform: rotate(40deg);
+	}
+	&::before {
+		left: -38px;
+		transform: rotate(-40deg);
+	}
+}
+
+
+
+///   Sun
+//////////////////////////////////////////////////////////
+
+.sun__holder {
+	position: absolute;
+	top: 5%;
+	left: 10%;
+	
+}
+
+.sun,
+.sun::before,
+.sun::after {
+	border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+	bottom: 0;
+}
+
+.sun {
+	position: absolute;
+	top: 10%;
+	left: 45%;
+	@include width-height(170px, 100px);
+	background: $sun;
+	animation: sunset 3s;
+	animation-fill-mode: forwards;
+	z-index: 1;
+	&::before,
+	&::after {
+		@include pseduo(50%, 50%);		
+		background-color: lighten($blue-dark, 12%);
+	}
+	&::before {
+		left: -30%;
+	}
+	&::after {
+		right: -30%;
+	}	
+}
+
+///   Bush
+//////////////////////////////////////////////////////////
+
+.bush,
+.bush::before,
+.bush::after {
+	border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+	bottom: -2px;
+}
+
+.bush {	
+	position: absolute;
+	top: 150%;
+	left: -35%;
+	@include width-height(120px, 80px);
+	@include bushes;
+	z-index: 1;
+	&::before,
+	&::after {
+		@include pseduo(50%, 50%);
+		@include bushes;
+	}
+	&::before {		
+		left: -30%;		
+	}
+	&::after {
+		right: -30%;
+	}
+}
+
+///   House
+//////////////////////////////////////////////////////////
+
+.window {
+	@include pseduo(45px, 45px);
+	top: 70px;
+	border-right: outset 2px darken($brick, 15%);
+	border-top: outset 1px darken($brick, 15%);
+	background-color: #fad390;
+}
+
+.house {
+	position: absolute;
+	right: 20%;
+	bottom: 30%;
+	@include width-height(300px, 100px);
+	&::before {
+		@extend .window;
+		right: 15%;		
+	}
+	&::after {
+		@extend .window;
+		left: 15%;
+	}
+}
+
+.roof {
+	position: absolute;
+	top: -170%;
+	right: -15%;
+	border-style: solid;
+	border-width: 0 200px 200px 200px;
+	border-color: transparent transparent darken($roof, 15%) transparent;
+}
+
+.chimney {
+	position: absolute;
+	right: 13.6%;
+	top: -130%;
+	@include width-height(48px, 90px);
+	.brick__holder {
+		display: block;
+	}
+}
+
+.smoke {
+	position: absolute;
+	@include width-height(0, 0);
+	left: 77%;
+	animation-name: smoke;
+	animation-duration: .8s;
+	animation-iteration-count: infinite;
+}
+
+.door {
+	position: absolute;
+	top: 120%;
+	right: 38%;
+	@include width-height(60px, 90px);
+	border-top: outset 3px darken($door, 2%);
+	border-right: outset 3px darken($door, 2%);
+	background-color: $door;
+	&::before {
+		@include pseduo(10px, 10px);
+		top: 45%;
+		right: 1%;
+		border-radius: 50%;
+		background-color: darken($door, 20%);	
+	}
+}
+
+///   Brick
+//////////////////////////////////////////////////////////
+
+
+.brick__holder {
+	@include width-height(100%, 30px);
+	display: flex;
+}
+
+.brick {
+	@include width-height(100%, inherit);
+}
+
+.brick__holder:nth-child(odd) {
+	.brick:nth-child(odd) {
+		background-color: $brick;
+		border: outset 3.5px darken($brick, 3%);
+	}
+	.brick:nth-child(even) {
+		background-color: darken($brick, 2%);
+		border: outset 3.5px darken($brick, 4%);
+	}
+}
+
+.brick__holder:nth-child(even) {
+	.brick:nth-child(odd) {
+		background-color: darken($brick, 2%);
+		border: outset 3.5px darken($brick, 4%);
+	}
+	.brick:nth-child(even) {
+		background-color: $brick;
+		border: outset 3.5px darken($brick, 3%);	
+	}
+}
+
+///   Animation
+//////////////////////////////////////////////////////////
+
+@keyframes sunset {
+	0% {
+		background: $sun;
+	}
+	25% {
+		background: darken($sun, 10%);
+	}
+	50% {
+		background: darken($sun, 15%);
+	}
+	75% {
+		background: darken($sun, 20%);
+	}
+	100% {
+	  	background: $sun-gradient;
+	  
+	}
+}
+
+@keyframes smoke {
+	0% {
+		bottom: 250%;	
+		box-shadow: 0 0 40px 35px darken($gray-dark, 7%);
+	}
+	25% {
+		bottom: 300%;
+		box-shadow: 0 0 60px 35px darken($gray-dark, 7%);
+
+	}
+	50% {
+		bottom: 350%;
+		box-shadow: 0 0 60px 40px darken($gray-dark, 7%);
+	}
+	75% {
+		bottom: 370%;
+		box-shadow: 0 0 60px 45px darken($gray-dark, 7%);
+	}
+	100% {
+		bottom: 450%;
+		box-shadow: 0 0 60px 60px darken($gray-dark, 7%);
+	}
+}
+

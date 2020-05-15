@@ -1,0 +1,345 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #0f1415;
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    max-width: 650px;
+    max-height: 450px;
+  }
+}
+
+.container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 750px;
+  height: 650px;
+  border-radius: 25px;
+  background: -webkit-gradient(linear, left top, left bottom, from(#0c2461), to(#079992));
+  background: linear-gradient(#0c2461, #079992);
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.container::after, .container::before {
+  content: '';
+  position: absolute;
+  width: 120px;
+  height: 35px;
+  top: 0;
+  background-color: #cd6133;
+  opacity: .7;
+}
+
+.container::after {
+  right: -38px;
+  -webkit-transform: rotate(40deg);
+          transform: rotate(40deg);
+}
+
+.container::before {
+  left: -38px;
+  -webkit-transform: rotate(-40deg);
+          transform: rotate(-40deg);
+}
+
+.sun__holder {
+  position: absolute;
+  top: 5%;
+  left: 10%;
+}
+
+.sun,
+.sun::before,
+.sun::after {
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  bottom: 0;
+}
+
+.sun {
+  position: absolute;
+  top: 10%;
+  left: 45%;
+  width: 170px;
+  height: 100px;
+  background: #e67e22;
+  -webkit-animation: sunset 3s;
+          animation: sunset 3s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  z-index: 1;
+}
+
+.sun::before, .sun::after {
+  content: '';
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  background-color: #133897;
+}
+
+.sun::before {
+  left: -30%;
+}
+
+.sun::after {
+  right: -30%;
+}
+
+.bush,
+.bush::before,
+.bush::after {
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  bottom: -2px;
+}
+
+.bush {
+  position: absolute;
+  top: 150%;
+  left: -35%;
+  width: 120px;
+  height: 80px;
+  border-radius: 60% 60% 0 0 / 100% 100% 0 0;
+  border-bottom: 2px solid #037942;
+  background: -webkit-gradient(linear, left top, left bottom, from(#05c46b), to(#049250));
+  background: linear-gradient(#05c46b, #049250);
+  z-index: 1;
+}
+
+.bush::before, .bush::after {
+  content: '';
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  border-radius: 60% 60% 0 0 / 100% 100% 0 0;
+  border-bottom: 2px solid #037942;
+  background: -webkit-gradient(linear, left top, left bottom, from(#05c46b), to(#049250));
+  background: linear-gradient(#05c46b, #049250);
+}
+
+.bush::before {
+  left: -30%;
+}
+
+.bush::after {
+  right: -30%;
+}
+
+.window, .house::before, .house::after {
+  content: '';
+  position: absolute;
+  width: 45px;
+  height: 45px;
+  top: 70px;
+  border-right: outset 2px #b83a1d;
+  border-top: outset 1px #b83a1d;
+  background-color: #fad390;
+}
+
+.house {
+  position: absolute;
+  right: 20%;
+  bottom: 30%;
+  width: 300px;
+  height: 100px;
+}
+
+.house::before {
+  right: 15%;
+}
+
+.house::after {
+  left: 15%;
+}
+
+.roof {
+  position: absolute;
+  top: -170%;
+  right: -15%;
+  border-style: solid;
+  border-width: 0 200px 200px 200px;
+  border-color: transparent transparent #7d230e transparent;
+}
+
+.chimney {
+  position: absolute;
+  right: 13.6%;
+  top: -130%;
+  width: 48px;
+  height: 90px;
+}
+
+.chimney .brick__holder {
+  display: block;
+}
+
+.smoke {
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: 77%;
+  -webkit-animation-name: smoke;
+          animation-name: smoke;
+  -webkit-animation-duration: .8s;
+          animation-duration: .8s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+
+.door {
+  position: absolute;
+  top: 120%;
+  right: 38%;
+  width: 60px;
+  height: 90px;
+  border-top: outset 3px #7f2a16;
+  border-right: outset 3px #7f2a16;
+  background-color: #882D17;
+}
+
+.door::before {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  top: 45%;
+  right: 1%;
+  border-radius: 50%;
+  background-color: #311008;
+}
+
+.brick__holder {
+  width: 100%;
+  height: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.brick {
+  width: 100%;
+  height: inherit;
+}
+
+.brick__holder:nth-child(odd) .brick:nth-child(odd) {
+  background-color: #e15f41;
+  border: outset 3.5px #df5434;
+}
+
+.brick__holder:nth-child(odd) .brick:nth-child(even) {
+  background-color: #e05838;
+  border: outset 3.5px #de502f;
+}
+
+.brick__holder:nth-child(even) .brick:nth-child(odd) {
+  background-color: #e05838;
+  border: outset 3.5px #de502f;
+}
+
+.brick__holder:nth-child(even) .brick:nth-child(even) {
+  background-color: #e15f41;
+  border: outset 3.5px #df5434;
+}
+
+@-webkit-keyframes sunset {
+  0% {
+    background: #e67e22;
+  }
+  25% {
+    background: #bf6516;
+  }
+  50% {
+    background: #a85913;
+  }
+  75% {
+    background: #924d10;
+  }
+  100% {
+    background: -webkit-gradient(linear, left top, left bottom, from(#c0392b), to(#b66015));
+    background: linear-gradient(#c0392b, #b66015);
+  }
+}
+
+@keyframes sunset {
+  0% {
+    background: #e67e22;
+  }
+  25% {
+    background: #bf6516;
+  }
+  50% {
+    background: #a85913;
+  }
+  75% {
+    background: #924d10;
+  }
+  100% {
+    background: -webkit-gradient(linear, left top, left bottom, from(#c0392b), to(#b66015));
+    background: linear-gradient(#c0392b, #b66015);
+  }
+}
+
+@-webkit-keyframes smoke {
+  0% {
+    bottom: 250%;
+    -webkit-box-shadow: 0 0 40px 35px #0f1415;
+            box-shadow: 0 0 40px 35px #0f1415;
+  }
+  25% {
+    bottom: 300%;
+    -webkit-box-shadow: 0 0 60px 35px #0f1415;
+            box-shadow: 0 0 60px 35px #0f1415;
+  }
+  50% {
+    bottom: 350%;
+    -webkit-box-shadow: 0 0 60px 40px #0f1415;
+            box-shadow: 0 0 60px 40px #0f1415;
+  }
+  75% {
+    bottom: 370%;
+    -webkit-box-shadow: 0 0 60px 45px #0f1415;
+            box-shadow: 0 0 60px 45px #0f1415;
+  }
+  100% {
+    bottom: 450%;
+    -webkit-box-shadow: 0 0 60px 60px #0f1415;
+            box-shadow: 0 0 60px 60px #0f1415;
+  }
+}
+
+@keyframes smoke {
+  0% {
+    bottom: 250%;
+    -webkit-box-shadow: 0 0 40px 35px #0f1415;
+            box-shadow: 0 0 40px 35px #0f1415;
+  }
+  25% {
+    bottom: 300%;
+    -webkit-box-shadow: 0 0 60px 35px #0f1415;
+            box-shadow: 0 0 60px 35px #0f1415;
+  }
+  50% {
+    bottom: 350%;
+    -webkit-box-shadow: 0 0 60px 40px #0f1415;
+            box-shadow: 0 0 60px 40px #0f1415;
+  }
+  75% {
+    bottom: 370%;
+    -webkit-box-shadow: 0 0 60px 45px #0f1415;
+            box-shadow: 0 0 60px 45px #0f1415;
+  }
+  100% {
+    bottom: 450%;
+    -webkit-box-shadow: 0 0 60px 60px #0f1415;
+            box-shadow: 0 0 60px 60px #0f1415;
+  }
+}
+/*# sourceMappingURL=style.css.map */
